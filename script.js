@@ -1,6 +1,11 @@
+let display = document.getElementById('display');
+let digits = Array.from(document.querySelectorAll('.digit'));
+let operators = Array.from(document.querySelectorAll('.operator'));
+
 let num1 = 0
-let operator
+let operatorChoice = null
 let num2 = 0
+let displayValue = ''
 
 function add(a, b) {
    return(a + b);
@@ -20,19 +25,32 @@ function divide (a, b) {
 
 function operate(num1, operator, num2) {
     if (operator === '+') {
-        add(num1,num2)
+        return add(num1,num2)
     }
     else if (operator === '-') {
-        subtract(num1,num2)
+        return subtract(num1,num2)
     }
     else if (operator === '*') {
-        multiply(num1,num2)
+        return multiply(num1,num2)
     }
     else if (operator === '/') {
-        divide(num1,num2)
+        return divide(num1,num2)
     }
 }
- 
+
+digits.forEach((digit) => {
+    digit.addEventListener('click', updateDisplay)
+})
+
+operators.forEach((operator) => {
+    operator.addEventListener('click', updateDisplay)
+})
+
+function updateDisplay() {
+    displayValue += this.id;
+    display.textContent += this.id;
+}
+
  
  
  
